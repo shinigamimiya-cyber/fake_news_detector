@@ -6,15 +6,12 @@ import re
 st.set_page_config(page_title="Fake News Detector", layout="centered")
 
 # Load model
-@st.cache_resource
-def load_model():
-    import pickle
-    model = pickle.load(open("model.pkl", "rb"))
-    vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
-    return model, vectorizer
+model = pickle.load(open("model.pkl", "rb"))
+vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
-model, vectorizer = load_model()
-
+# 🔍 DEBUG (ADD THIS RIGHT HERE)
+st.write("Vectorizer type:", type(vectorizer))
+st.write("Is fitted:", hasattr(vectorizer, "vocabulary_"))
 # Cleaning function
 def clean_text(text):
     text = text.lower()
