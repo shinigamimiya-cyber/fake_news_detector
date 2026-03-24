@@ -65,7 +65,7 @@ if st.button("Analyze News"):
         st.warning("Please enter some text")
     else:
         cleaned = clean_text(user_input)
-        vector = vectorizer.transform(str[cleaned])
+        vector = vectorizer.transform([cleaned])
 
         prediction = model.predict(vector)[0]
         confidence = model.predict_proba(vector).max()
